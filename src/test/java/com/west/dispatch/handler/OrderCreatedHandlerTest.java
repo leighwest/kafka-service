@@ -1,10 +1,12 @@
 package com.west.dispatch.handler;
 
+import com.west.dispatch.message.OrderCreated;
 import com.west.dispatch.service.DispatchService;
+import com.west.dispatch.util.TestEventData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static java.util.UUID.randomUUID;
 import static org.mockito.Mockito.*;
 
 class OrderCreatedHandlerTest {
@@ -20,7 +22,8 @@ class OrderCreatedHandlerTest {
 
     @Test
     void listen() {
-        handler.listen("payload");
-        verify(dispatchServiceMock, times(1)).process("payload");
+        OrderCreated testEvent = TestEventData.builderOrderCreatedEvent(randomUUID(), randomUUID().toString());
+        handler.listen(testEvent);
+        verify(dispatchServiceMock, times(1)).process(testEvent);
     }
 }
