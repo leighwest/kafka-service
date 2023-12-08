@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class TestEventData {
 
-    public static OrderCreated builderOrderCreatedEvent(UUID orderId, String item) {
+    public static OrderCreated buildOrderCreatedEvent(UUID orderId, String item) {
         return OrderCreated.builder()
                 .orderId(orderId)
                 .item(item)
